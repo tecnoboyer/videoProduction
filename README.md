@@ -1,70 +1,21 @@
-# redainess
-Publica presentacion de la plataforma
+## 🗺️ Milestone 1: Core AI Production Engine
 
+For the first milestone, the strategy deliberately avoids databases and frontend development. Instead, the focus is on building a robust backend capable of processing a complete episode purely from the command line or through simple API calls.
 
+### Implementation Steps
 
-## 🛠️ Tech Stack
+- [ ] **Build the Project Directory Manager:** Establish the foundational file structure and management system.
+- [ ] **Create Provider Abstractions:** Implement standardized interfaces for all generative models, including:
+  - LLMs
+  - Image generators
+  - Audio generators
+  - Video generators
+- [ ] **Implement Core Services:** Develop the `Narrative`, `Script`, `Audio`, `Image`, and `Video` services. Ensure each service follows a standardized I/O pattern by reading from an `input/` directory and writing to an `output/` directory.
+- [ ] **Add a Job Manager:** Create a tracking system that records every execution and its associated metadata.
+- [ ] **Expose API Endpoints:** Wrap each service in **FastAPI** endpoints to enable seamless triggering and testing using tools like Swagger UI or Postman.
 
-* **Framework:** Next.js 14 (App Router)
-* **Styling:** TailwindCSS
-* **Component Libraries:** React Icons, Framer Motion
-* **Data Simulation:** JSON file via `/api/data` route
+### 🏗️ Architectural Vision
 
----
+Once these steps are complete, the foundation will serve as a robust, standalone AI production engine. 
 
-## 🧩 Simulated Backend (`/api/data`)
-
-The JSON returned mimics MongoDB collections:
-
-* `product`: Product ID and names
-* `additive`: Pigment names and capabilities
-* `kg_sbe_pigm`, `car_per_kg`: Relationships for conversion
-* `schedule`: Weekly product demands
-* `formula_pallet_fact`: Factors for pallet planning
-* `sack_per_pallet`: Sack replenishment multipliers
-* `mix_per_week`: Additive mix values for weekly inventory
-* `set_parameters`: Global settings (year, assumptions, capacity)
-
-> **Optional:** Simulated `/api/schedule/[id]` PUT route for in-place editing (non-persistent)
-
----
-
-## 🧪 Local Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# View app at http://localhost:3000
-```
-
-### 🔄 Build & Production (PM2 Example)
-
-```bash
-# Build the app
-npm run build
-
-# Start in production mode
-npm start
-
-# Or using pm2
-pm2 serve ./.next 3000 --spa --name tecnoboyer-dashboard
-```
-
----
-
-## 📂 Project Layout (Simplified)
-
-```
-app/
-  dashboard/            # Dashboard views
-  services/             # Educational walkthroughs
-  about/                # Experience + contact
-  api/data/route.ts     # Simulated JSON backend
-components/             # Reusable visual modules
-public/                 # Logos, icons, assets
-```
-
+Building the **Next.js** dashboard afterward becomes a much cleaner process: it will strictly be a matter of visualizing projects, jobs, and assets, rather than mistakenly embedding heavy business logic into the frontend. This decoupled architecture ensures the application remains highly extensible as new AI providers and production stages are added in the future.
