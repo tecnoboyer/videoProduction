@@ -1,0 +1,659 @@
+# Video Production Backend API – Architecture Specification
+
+## Overview
+
+This project is a backend API for an AI-assisted educational video production system.
+
+The backend is implemented in **Python** using **FastAPI** and is designed to orchestrate the complete production pipeline of a video series. The backend is intentionally designed to be independent of the frontend so that it can later support multiple clients, including:
+
+* Next.js web application
+* Command Line Interface (CLI)
+* Desktop applications
+* Mobile applications
+* Automation scripts
+* External integrations
+
+The backend exposes REST APIs that allow clients to create projects, execute production stages, manage generated assets, and retrieve production status.
+
+---
+
+# Primary Design Goals
+
+The architecture follows these principles:
+
+* Clean Architecture
+* Modular Services
+* Separation of Concerns
+* AI Provider Independence
+* File-Based Asset Management
+* Future Database Compatibility
+* Future Workflow Automation
+* Easy Integration with Multiple LLM Providers
+
+The project is intentionally designed so that every production stage can execute independently.
+
+---
+
+# Technology Stack
+
+Backend Framework
+
+* FastAPI
+
+Language
+
+* Python 3.12+
+
+Documentation
+
+* Swagger UI
+* OpenAPI
+
+Validation
+
+* Pydantic
+
+Configuration
+
+* python-dotenv
+
+Future Technologies
+
+* SQLAlchemy
+* PostgreSQL
+* Redis
+* Celery
+* WebSockets
+* Alembic
+
+---
+
+# High Level Architecture
+
+Client
+
+↓
+
+FastAPI Routes
+
+↓
+
+Business Services
+
+↓
+
+AI Providers
+
+↓
+
+Storage
+
+↓
+
+Project Assets
+
+The API routes never contain business logic.
+
+Business logic exists exclusively inside the Services layer.
+
+External AI providers are abstracted behind Provider classes.
+
+---
+
+# Project Structure
+
+```text
+backend/
+
+    app/
+
+        api/
+
+            v1/
+
+                routes/
+
+                    projects.py
+
+                    narrative.py
+
+                    script.py
+
+                    audio.py
+
+                    images.py
+
+                    video.py
+
+                    postproduction.py
+
+        core/
+
+            config.py
+
+            constants.py
+
+        providers/
+
+            llm/
+
+            image/
+
+            audio/
+
+            video/
+
+        services/
+
+            project/
+
+            narrative/
+
+            script/
+
+            audio/
+
+            images/
+
+            video/
+
+            postproduction/
+
+        storage/
+
+        workflows/
+
+        schemas/
+
+        models/
+
+        utils/
+
+        main.py
+
+    projects/
+
+    tests/
+```
+
+---
+
+# Layer Responsibilities
+
+## API Layer
+
+Responsible only for:
+
+* HTTP endpoints
+* Request validation
+* Response formatting
+* Authentication (future)
+
+The API layer must never contain production logic.
+
+---
+
+## Services Layer
+
+Responsible for business logic.
+
+Examples:
+
+* Create project
+* Generate narrative
+* Generate production script
+* Generate narration
+* Generate images
+* Generate video clips
+* Post production
+
+Every service should be independently executable.
+
+---
+
+## Providers Layer
+
+Responsible for external AI integrations.
+
+Examples
+
+LLM
+
+* OpenAI
+* Gemini
+* Anthropic
+* Ollama
+* Azure OpenAI
+
+Image
+
+* Imagen
+* Flux
+* Stable Diffusion
+* Ideogram
+
+Audio
+
+* ElevenLabs
+* OpenAI TTS
+* Google TTS
+
+Video
+
+* Veo
+* Runway
+* Luma
+
+The Services layer never directly calls an SDK.
+
+Instead it communicates through Provider classes.
+
+---
+
+## Storage Layer
+
+Responsible for:
+
+* Reading files
+* Writing files
+* Folder management
+* Metadata
+* Asset discovery
+
+Future versions may support cloud storage.
+
+---
+
+# Production Pipeline
+
+Every project follows the same production stages.
+
+Project Creation
+
+↓
+
+Narrative
+
+↓
+
+Production Script
+
+↓
+
+Audio Asset Generation
+
+↓
+
+Image Asset Generation
+
+↓
+
+Video Clip Generation
+
+↓
+
+Video Editing
+
+↓
+
+Post Production
+
+↓
+
+Completed
+
+Each stage is independent.
+
+Each stage reads from its own input folder.
+
+Each stage writes to its own output folder.
+
+---
+
+# Project Organization
+
+Projects are stored on disk.
+
+Example
+
+```text
+projects/
+
+    solar_system/
+
+        metadata.json
+
+        narrative/
+
+            input/
+
+            output/
+
+        script/
+
+            input/
+
+            output/
+
+        audio/
+
+            input/
+
+            output/
+
+        images/
+
+            input/
+
+            output/
+
+        video/
+
+            input/
+
+            output/
+
+        postproduction/
+
+            input/
+
+            output/
+```
+
+This file-based organization allows:
+
+* Easy backup
+* Version control
+* Manual editing
+* AI experimentation
+* Pipeline debugging
+
+---
+
+# Metadata
+
+Every project contains a metadata.json file.
+
+Example
+
+```json
+{
+    "id": "project-001",
+    "title": "Solar System",
+    "status": "ACTIVE",
+    "current_stage": "narrative",
+    "language": "English",
+    "created_at": "",
+    "updated_at": ""
+}
+```
+
+Metadata should eventually include:
+
+* AI models used
+* Provider names
+* Generation history
+* Production statistics
+* Export information
+
+---
+
+# Input / Output Convention
+
+Every production stage follows the same convention.
+
+Example
+
+```text
+audio/
+
+    input/
+
+    output/
+```
+
+Input contains everything required for execution.
+
+Output contains generated assets.
+
+Examples
+
+Narrative
+
+input/
+
+* prompt.txt
+
+output/
+
+* narrative.md
+
+Audio
+
+input/
+
+* narration.txt
+* settings.json
+
+output/
+
+* narration.wav
+* narration.mp3
+
+Images
+
+input/
+
+* prompt.txt
+* style.json
+
+output/
+
+* image.png
+
+Video
+
+input/
+
+* storyboard.json
+* narration.wav
+* image.png
+
+output/
+
+* clip.mp4
+
+---
+
+# Service Pattern
+
+Every service follows a similar interface.
+
+Example
+
+ProjectService
+
+* create()
+* load()
+* save()
+* list()
+
+NarrativeService
+
+* generate()
+* validate()
+* save()
+
+ImageService
+
+* generate()
+* validate()
+
+AudioService
+
+* generate()
+* validate()
+
+VideoService
+
+* generate()
+* validate()
+
+Consistent APIs are preferred throughout the project.
+
+---
+
+# API Philosophy
+
+Routes should remain thin.
+
+Example
+
+Route
+
+↓
+
+Validation
+
+↓
+
+Service
+
+↓
+
+Provider
+
+↓
+
+Storage
+
+Routes should never contain:
+
+* Prompt engineering
+* AI logic
+* File management
+* Workflow decisions
+
+---
+
+# Workflow Philosophy
+
+Workflow orchestration is intentionally manual in the initial versions.
+
+Each production stage can be executed independently.
+
+Later versions will include:
+
+* Automatic pipeline execution
+* Job queues
+* Background workers
+* Workflow engine
+
+Current priority is understanding and validating every production stage.
+
+---
+
+# AI Provider Philosophy
+
+The application must never become dependent on a single AI provider.
+
+Every provider must implement common interfaces.
+
+Example
+
+LLMProvider
+
+generate()
+
+chat()
+
+stream()
+
+ImageProvider
+
+generate()
+
+edit()
+
+upscale()
+
+AudioProvider
+
+generate()
+
+clone_voice()
+
+VideoProvider
+
+generate()
+
+extend()
+
+Future providers can be added without modifying business services.
+
+---
+
+# Coding Standards
+
+Use:
+
+* Type hints
+* Pydantic models
+* pathlib instead of os.path
+* Dependency Injection where appropriate
+* Logging instead of print()
+* Async endpoints when beneficial
+* Small focused classes
+
+Avoid:
+
+* Business logic inside routes
+* Hardcoded paths
+* Hardcoded API keys
+* Duplicate code
+* Provider-specific logic inside services
+
+---
+
+# Future Roadmap
+
+Phase 1
+
+* Project Manager
+* Narrative generation
+* Script generation
+* Manual execution
+
+Phase 2
+
+* Audio generation
+* Image generation
+* Video generation
+
+Phase 3
+
+* Workflow engine
+* Job system
+* Database integration
+
+Phase 4
+
+* Authentication
+* Multi-user support
+* Production dashboard
+* Real-time progress
+
+Phase 5
+
+* Cloud storage
+* Distributed rendering
+* Batch production
+* AI optimization
+
+---
+
+# Long-Term Vision
+
+This backend is intended to become a reusable AI production engine rather than a project-specific API.
+
+It should support multiple educational video series, multiple AI providers, multiple frontend applications, and evolving production workflows without requiring architectural changes. Every new feature should integrate into the existing layered architecture by extending services, providers, or storage components rather than bypassing them.
