@@ -1,0 +1,15 @@
+{
+  "job_id": "job_cb70a9a973f5",
+  "project_id": "volcanes_040b3700",
+  "service_name": "audio_tts",
+  "provider": "elevenlabs",
+  "status": "failed",
+  "created_at": "2026-08-03T02:54:46.676024Z",
+  "started_at": "2026-08-03T02:54:46.691610Z",
+  "finished_at": "2026-08-03T02:54:46.720377Z",
+  "input_folder": "projects\\volcanes_040b3700\\audio\\input",
+  "output_folder": "projects\\volcanes_040b3700\\audio\\output",
+  "result_path": null,
+  "error_message": "Expecting property name enclosed in double quotes: line 1 column 3 (char 2)",
+  "metadata": {}
+}

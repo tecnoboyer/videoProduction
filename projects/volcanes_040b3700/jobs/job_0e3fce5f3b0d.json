@@ -1,0 +1,15 @@
+{
+  "job_id": "job_0e3fce5f3b0d",
+  "project_id": "volcanes_040b3700",
+  "service_name": "narrative",
+  "provider": "openai",
+  "status": "failed",
+  "created_at": "2026-08-03T01:29:46.301133Z",
+  "started_at": "2026-08-03T01:29:46.319594Z",
+  "finished_at": "2026-08-03T01:29:46.981459Z",
+  "input_folder": "projects\\volcanes_040b3700\\narrative\\input",
+  "output_folder": "projects\\volcanes_040b3700\\narrative\\output",
+  "result_path": null,
+  "error_message": "AsyncClient.__init__() got an unexpected keyword argument 'proxies'",
+  "metadata": {}
+}

@@ -1,0 +1,15 @@
+{
+  "job_id": "job_278c97449852",
+  "project_id": "volcanes_040b3700",
+  "service_name": "script",
+  "provider": "openai",
+  "status": "completed",
+  "created_at": "2026-08-03T01:44:14.977468Z",
+  "started_at": "2026-08-03T01:44:14.990469Z",
+  "finished_at": "2026-08-03T01:44:19.602848Z",
+  "input_folder": "projects\\volcanes_040b3700\\script\\input",
+  "output_folder": "projects\\volcanes_040b3700\\script\\output",
+  "result_path": "projects\\volcanes_040b3700\\script\\output\\output.json",
+  "error_message": null,
+  "metadata": {}
+}

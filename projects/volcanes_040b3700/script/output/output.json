@@ -1,0 +1,87 @@
+{
+  "dialogue": [
+    {
+      "speaker": "Narrator",
+      "text": "En un rincón de las montañas, un volcán dormido yacía en silencio.",
+      "voice_id": "v_narrator_01",
+      "emotion": "neutral",
+      "direction": "descriptive",
+      "scene_id": "scene_001"
+    },
+    {
+      "speaker": "Narrator",
+      "text": "Para los animales que vivían cerca, no era más que una inmensa roca, sin sospechar que en su interior latía un corazón ardiente.",
+      "voice_id": "v_narrator_01",
+      "emotion": "neutral",
+      "direction": "descriptive",
+      "scene_id": "scene_001"
+    },
+    {
+      "speaker": "Narrator",
+      "text": "Un día, el volcán se despertó con un poderoso ¡rumble, rumble!, liberando humo, ceniza y lava resplandeciente.",
+      "voice_id": "v_narrator_01",
+      "emotion": "dramatic",
+      "direction": "descriptive",
+      "scene_id": "scene_002"
+    },
+    {
+      "speaker": "Animal 1",
+      "text": "¡Miren el volcán!",
+      "voice_id": "v_animal1_01",
+      "emotion": "astonished",
+      "direction": "pointing",
+      "scene_id": "scene_002"
+    },
+    {
+      "speaker": "Animal 2",
+      "text": "Es increíble, pero debemos mantenernos a salvo.",
+      "voice_id": "v_animal2_01",
+      "emotion": "cautious",
+      "direction": "concerned",
+      "scene_id": "scene_002"
+    },
+    {
+      "speaker": "Narrator",
+      "text": "Los animales, desde un refugio seguro, contemplaron el majestuoso espectáculo de la naturaleza desatando su poder.",
+      "voice_id": "v_narrator_01",
+      "emotion": "awe",
+      "direction": "descriptive",
+      "scene_id": "scene_002"
+    },
+    {
+      "speaker": "Narrator",
+      "text": "Con el paso del tiempo, el volcán volvió a dormirse, y la lava se enfrió, transformándose en nuevas formaciones rocosas que embellecieron el paisaje.",
+      "voice_id": "v_narrator_01",
+      "emotion": "calm",
+      "direction": "descriptive",
+      "scene_id": "scene_003"
+    },
+    {
+      "speaker": "Teacher",
+      "text": "Así, los niños aprendieron que los volcanes son gigantes poderosos de la Tierra: fascinantes y hermosos, pero siempre dignos de respeto y admiración desde una distancia prudente.",
+      "voice_id": "v_teacher_01",
+      "emotion": "educational",
+      "direction": "teaching",
+      "scene_id": "scene_004"
+    }
+  ],
+  "scene_breakdown": [
+    {
+      "scene_id": "scene_001",
+      "lines": 2
+    },
+    {
+      "scene_id": "scene_002",
+      "lines": 4
+    },
+    {
+      "scene_id": "scene_003",
+      "lines": 1
+    },
+    {
+      "scene_id": "scene_004",
+      "lines": 1
+    }
+  ],
+  "clip_count": 8
+}

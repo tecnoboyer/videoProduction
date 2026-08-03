@@ -1,0 +1,15 @@
+{
+  "job_id": "job_a70da6a708ab",
+  "project_id": "volcanes_040b3700",
+  "service_name": "images",
+  "provider": "openai",
+  "status": "failed",
+  "created_at": "2026-08-03T02:38:44.210925Z",
+  "started_at": "2026-08-03T02:38:44.224447Z",
+  "finished_at": "2026-08-03T02:39:17.069307Z",
+  "input_folder": null,
+  "output_folder": null,
+  "result_path": null,
+  "error_message": "Invalid type for url.  Expected str or httpx.URL, got <class 'NoneType'>: None",
+  "metadata": {}
+}

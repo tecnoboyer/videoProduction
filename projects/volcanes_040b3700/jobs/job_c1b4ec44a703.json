@@ -1,0 +1,15 @@
+{
+  "job_id": "job_c1b4ec44a703",
+  "project_id": "volcanes_040b3700",
+  "service_name": "images",
+  "provider": "openai",
+  "status": "completed",
+  "created_at": "2026-08-03T02:40:54.035341Z",
+  "started_at": "2026-08-03T02:40:54.049420Z",
+  "finished_at": "2026-08-03T02:41:26.353446Z",
+  "input_folder": null,
+  "output_folder": null,
+  "result_path": "projects\\volcanes_040b3700\\images\\output",
+  "error_message": null,
+  "metadata": {}
+}

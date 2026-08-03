@@ -1,4 +1,7 @@
 #### APIfast Backend functionality  ####
+
+
+run uvicorn app.main:app --reload --port 8000
 ## 🗺️ Milestone 1: Core AI Production Engine
 
 For the first milestone, the strategy deliberately avoids databases and frontend development. Instead, the focus is on building a robust backend capable of processing a complete episode purely from the command line or through simple API calls.

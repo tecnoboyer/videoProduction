@@ -1,0 +1,16 @@
+{
+  "id": "volcanes_040b3700",
+  "title": "Volcanes",
+  "description": "Documental sobre volcanes",
+  "status": "created",
+  "language": "es",
+  "voice": "Rachel",
+  "image_model": "dall-e-3",
+  "video_model": "ffmpeg",
+  "llm_provider": "openai",
+  "current_scene": null,
+  "current_service": "images",
+  "last_job_id": "job_79659fec3b56",
+  "created_at": "2026-07-28T01:32:03.014952Z",
+  "metadata": {}
+}

@@ -1,0 +1,15 @@
+{
+  "job_id": "job_7f5deac0b99f",
+  "project_id": "volcanes_040b3700",
+  "service_name": "images",
+  "provider": "openai",
+  "status": "failed",
+  "created_at": "2026-08-03T02:09:58.718309Z",
+  "started_at": "2026-08-03T02:09:58.730827Z",
+  "finished_at": "2026-08-03T02:10:00.248263Z",
+  "input_folder": null,
+  "output_folder": null,
+  "result_path": null,
+  "error_message": "Error code: 400 - {'error': {'message': \"The model 'dall-e-2' does not exist.\", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}",
+  "metadata": {}
+}
