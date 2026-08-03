@@ -64,7 +64,11 @@ yarn-error.log
 
 sencibleDATA/
 
+projects/
 
 **Environments
 .venv
 .env
+
+__pycache__/
+*.pyc
