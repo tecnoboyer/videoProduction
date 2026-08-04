@@ -35,11 +35,22 @@ class ProviderFactory:
         provider = provider or settings.DEFAULT_TTS_PROVIDER
         if provider in cls._tts_instances:
             return cls._tts_instances[provider]
+
         if provider == "elevenlabs":
-            from app.services.providers.tts.elevenlabs import ElevenLabsTTS
-            inst = ElevenLabsTTS(api_key=settings.ELEVENLAB_API_KEY)
+            try:
+                from app.services.providers.tts.elevenlabs import ElevenLabsTTS
+                inst = ElevenLabsTTS(api_key=settings.ELEVENLAB_API_KEY)
+            except Exception as e:
+                # Fallback to OpenAI TTS if ElevenLabs fails to initialize
+                print(f"[WARN] ElevenLabs init failed ({e}), falling back to OpenAI TTS")
+                from app.services.providers.tts.openai_tts import OpenAITTS
+                inst = OpenAITTS(api_key=settings.OPENAI_API_KEY)
+        elif provider == "openai":
+            from app.services.providers.tts.openai_tts import OpenAITTS
+            inst = OpenAITTS(api_key=settings.OPENAI_API_KEY)
         else:
             raise ValueError(f"Unknown TTS provider: {provider}")
+
         cls._tts_instances[provider] = inst
         return inst
 
